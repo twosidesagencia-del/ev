@@ -58,7 +58,30 @@
     } catch (e) { /* navegação privada: segue sem salvar */ }
   }
 
+  // Abrir a página com ?reiniciar na URL zera tudo e começa da primeira tela.
+  function wantsReset() {
+    return /(^|[?&#])reiniciar\b/.test(location.search + location.hash);
+  }
+
+  function reset() {
+    try {
+      localStorage.removeItem(STORAGE_KEY);
+      localStorage.removeItem(TIMER_KEY);
+    } catch (e) { /* navegação privada: nada a limpar */ }
+    state = { index: 0, answers: {} };
+
+    // Tira o ?reiniciar da barra de endereço para que um refresh no meio
+    // do teste não jogue a pessoa de volta para a primeira tela.
+    if (window.history && history.replaceState) {
+      history.replaceState(null, '', location.pathname);
+    }
+  }
+
   function restore() {
+    if (wantsReset()) {
+      reset();
+      return;
+    }
     try {
       var raw = localStorage.getItem(STORAGE_KEY);
       if (!raw) return;

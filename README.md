@@ -97,6 +97,19 @@ videoUrl: 'https://www.youtube.com/embed/SEU_ID_AQUI?rel=0'
    antes do preço. Revise os bullets: eles precisam bater exatamente com o que o
    Estética Viral entrega, senão viram promessa falsa e geram reembolso.
 
+## Reiniciar o quiz para testar
+
+O quiz salva o progresso no navegador, então quem já respondeu volta na etapa
+onde parou. Para começar de novo, acrescente `?reiniciar` no fim do endereço:
+
+```
+https://seusite.com/?reiniciar
+```
+
+Isso zera as respostas e o contador da oferta. O `?reiniciar` some da barra de
+endereço logo em seguida, para um refresh no meio do teste não te jogar de volta
+para a primeira tela.
+
 ## Pixel e rastreamento
 
 Ainda não há pixel instalado. Quando for anunciar, cole o código do
