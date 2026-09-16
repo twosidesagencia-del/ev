@@ -100,15 +100,9 @@ videoUrl: 'https://www.youtube.com/embed/SEU_ID_AQUI?rel=0'
 ## Reiniciar o quiz para testar
 
 O quiz salva o progresso no navegador, então quem já respondeu volta na etapa
-onde parou. Para começar de novo, acrescente `?reiniciar` no fim do endereço:
-
-```
-https://seusite.com/?reiniciar
-```
-
-Isso zera as respostas e o contador da oferta. O `?reiniciar` some da barra de
-endereço logo em seguida, para um refresh no meio do teste não te jogar de volta
-para a primeira tela.
+onde parou. Para começar de novo, use o link **"Reiniciar quiz"** no rodapé
+da página — aparece em toda tela, embaixo do ano. Ele zera as respostas e o
+contador da oferta e volta para a primeira tela na hora.
 
 ## Pixel e rastreamento
 

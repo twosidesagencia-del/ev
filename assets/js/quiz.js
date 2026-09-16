@@ -12,6 +12,7 @@
   var bar       = document.getElementById('progressBar');
   var counter   = document.getElementById('stepCount');
   var btnBack   = document.getElementById('btnBack');
+  var btnReset  = document.getElementById('btnReset');
   var srStatus  = document.getElementById('srStatus');
 
   var STORAGE_KEY = 'ev-quiz';
@@ -117,6 +118,18 @@
     while (i > 0 && STEPS[i].type === 'loading') i--;
     go(i);
   });
+
+  // Botão fixo no rodapé: reinicia o quiz sem depender de nenhum parâmetro
+  // na URL (o link do preview pode não repassar a query string).
+  if (btnReset) {
+    btnReset.addEventListener('click', function () {
+      clearTimers();
+      reset();
+      render();
+      window.scrollTo({ top: 0, behavior: 'auto' });
+      announce('Quiz reiniciado.');
+    });
+  }
 
   function updateProgress(step) {
     var isQuestion = !!QUESTION_TYPES[step.type];
