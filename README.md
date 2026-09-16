@@ -76,45 +76,39 @@ videoUrl: 'https://www.youtube.com/embed/SEU_ID_AQUI?rel=0'
 ## O que mudou em relação ao funil antigo
 
 **Visual**
-- Paleta nude, dourado e rosé no lugar do branco puro, com tipografia serifada nos títulos.
-- Barra de progresso com contador de etapas e botão de voltar.
+- Paleta nude, dourado e rosé no lugar do branco puro, com Montserrat nos títulos.
+- Barra de progresso com contador de etapas.
 - Transições entre telas, cards com estado de seleção visível e os erros da análise aparecendo conforme a leitura desce.
 - Medidor "Baixo → Alto" animado em CSS, no lugar de uma imagem estática.
 
 **Conversão**
 - As perguntas de resposta única avançam sozinhas ao clicar, como no funil original.
 - O @ digitado aparece na tela de carregamento e no resultado da análise ("Análise de @seuperfil").
-- Bloco de benefícios e selo de garantia na oferta, que o funil antigo não tinha.
 - Botão de checkout fixo no rodapé, que aparece quando o botão principal sai da tela.
-- Contador de escassez sobrevive ao refresh da página (não reinicia em 15:00 a cada recarga).
+
+**Comportamento**
+- Sem botão de voltar: o quiz só avança para a próxima tela.
+- Não guarda progresso entre visitas — toda vez que a página é aberta ou
+  recarregada, começa do zero na primeira tela, mesmo que a pessoa já
+  tenha respondido antes. O contador de escassez da oferta também recomeça
+  dos minutos cheios a cada visita.
 
 **Técnico**
 - As imagens foram de 15 MB para 0,55 MB (WebP redimensionado) — o funil antigo travaria no 4G.
-- As respostas ficam salvas no navegador: quem fecha a página volta na etapa onde parou.
 - Funciona sem plataforma de funil: não depende de Deskfunnel nem de mensalidade.
 
-## Duas mudanças de conteúdo que eu fiz — confira se concorda
+## Uma mudança de conteúdo que eu fiz — confira se concorda
 
-1. **Tela 04 (crescimento do Instagram).** O funil original tinha três opções, sendo que
-   duas diziam a mesma coisa ("Não cresce quase nada" e "Cresce muito pouco"). Isso trava
-   a pessoa e suja o dado. Troquei por quatro opções que não se sobrepõem, incluindo
-   "Oscila: um post vai bem e os outros somem", que é a dor mais comum do nicho.
-
-2. **Tela 12 (oferta).** Acrescentei três bullets de benefício e o selo de garantia
-   antes do preço. Revise os bullets: eles precisam bater exatamente com o que o
-   Estética Viral entrega, senão viram promessa falsa e geram reembolso.
-
-## Reiniciar o quiz para testar
-
-O quiz salva o progresso no navegador, então quem já respondeu volta na etapa
-onde parou. Para começar de novo, use o link **"Reiniciar quiz"** no rodapé
-da página — aparece em toda tela, embaixo do ano. Ele zera as respostas e o
-contador da oferta e volta para a primeira tela na hora.
+**Tela 04 (crescimento do Instagram).** O funil original tinha três opções, sendo que
+duas diziam a mesma coisa ("Não cresce quase nada" e "Cresce muito pouco"). Isso trava
+a pessoa e suja o dado. Troquei por quatro opções que não se sobrepõem, incluindo
+"Oscila: um post vai bem e os outros somem", que é a dor mais comum do nicho.
 
 ## Pixel e rastreamento
 
-Ainda não há pixel instalado. Quando for anunciar, cole o código do
-Meta Pixel / Google Ads antes do `</head>`, em `index.html`.
+O pixel da **Metrito** já está instalado, antes do `</head>` em `index.html`.
+Para trocar por outro pixel (Meta, Google Ads etc.) ou adicionar mais um,
+cole o código no mesmo lugar.
 
 ## Estrutura dos arquivos
 

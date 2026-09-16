@@ -1,7 +1,8 @@
 /* ==========================================================================
    Estética Viral — motor do quiz
-   Renderiza as etapas definidas em content.js, guarda as respostas e
-   controla progresso, carregamentos e contador da oferta.
+   Renderiza as etapas definidas em content.js e controla o avanço,
+   carregamentos e contador da oferta. Sem botão de voltar e sem retomar
+   progresso: toda vez que a página carrega, começa da primeira tela.
    ========================================================================== */
 
 (function () {
@@ -11,13 +12,10 @@
   var topbar    = document.getElementById('topbar');
   var bar       = document.getElementById('progressBar');
   var counter   = document.getElementById('stepCount');
-  var btnBack   = document.getElementById('btnBack');
-  var btnReset  = document.getElementById('btnReset');
   var srStatus  = document.getElementById('srStatus');
 
-  var STORAGE_KEY = 'ev-quiz';
-  var TIMER_KEY   = 'ev-oferta-fim';
-
+  // O quiz não guarda progresso entre visitas: toda vez que a página é
+  // carregada ou recarregada, começa do zero na primeira tela.
   var state = { index: 0, answers: {} };
   var timers = [];
 
@@ -53,83 +51,23 @@
   var QUESTION_TYPES = { choice: 1, cards: 1, input: 1 };
   var questionSteps = STEPS.filter(function (s) { return QUESTION_TYPES[s.type]; });
 
-  function save() {
-    try {
-      localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
-    } catch (e) { /* navegação privada: segue sem salvar */ }
-  }
-
-  // Abrir a página com ?reiniciar na URL zera tudo e começa da primeira tela.
-  function wantsReset() {
-    return /(^|[?&#])reiniciar\b/.test(location.search + location.hash);
-  }
-
-  function reset() {
-    try {
-      localStorage.removeItem(STORAGE_KEY);
-      localStorage.removeItem(TIMER_KEY);
-    } catch (e) { /* navegação privada: nada a limpar */ }
-    state = { index: 0, answers: {} };
-
-    // Tira o ?reiniciar da barra de endereço para que um refresh no meio
-    // do teste não jogue a pessoa de volta para a primeira tela.
-    if (window.history && history.replaceState) {
-      history.replaceState(null, '', location.pathname);
-    }
-  }
-
-  function restore() {
-    if (wantsReset()) {
-      reset();
-      return;
-    }
-    try {
-      var raw = localStorage.getItem(STORAGE_KEY);
-      if (!raw) return;
-      var data = JSON.parse(raw);
-      if (data && typeof data.index === 'number' && STEPS[data.index]) {
-        // Não retoma em telas de carregamento: elas são só transição.
-        state.answers = data.answers || {};
-        state.index = STEPS[data.index].type === 'loading' ? data.index + 1 : data.index;
-      }
-    } catch (e) { /* ignora dados corrompidos */ }
-  }
-
   function handle() {
     var value = state.answers.perfil;
     return value ? '@' + value : 'seu perfil';
   }
 
   /* ---------------------------------------------------------- navegação -- */
+  // Só avança: não existe botão de voltar nem forma de retomar uma etapa
+  // anterior — a única saída é seguir em frente ou recarregar a página.
 
   function go(index) {
     clearTimers();
     state.index = Math.max(0, Math.min(index, STEPS.length - 1));
-    save();
     render();
     window.scrollTo({ top: 0, behavior: 'auto' });
   }
 
   function next() { go(state.index + 1); }
-
-  btnBack.addEventListener('click', function () {
-    var i = state.index - 1;
-    // Pula telas de carregamento ao voltar.
-    while (i > 0 && STEPS[i].type === 'loading') i--;
-    go(i);
-  });
-
-  // Botão fixo no rodapé: reinicia o quiz sem depender de nenhum parâmetro
-  // na URL (o link do preview pode não repassar a query string).
-  if (btnReset) {
-    btnReset.addEventListener('click', function () {
-      clearTimers();
-      reset();
-      render();
-      window.scrollTo({ top: 0, behavior: 'auto' });
-      announce('Quiz reiniciado.');
-    });
-  }
 
   function updateProgress(step) {
     var isQuestion = !!QUESTION_TYPES[step.type];
@@ -141,7 +79,6 @@
     bar.style.width = pct + '%';
     bar.parentNode.setAttribute('aria-valuenow', String(pct));
     counter.textContent = position + '/' + questionSteps.length;
-    btnBack.hidden = state.index === 0;
   }
 
   /* ------------------------------------------------------------ render --- */
@@ -232,7 +169,6 @@
         list.querySelectorAll('.option').forEach(function (o) { o.setAttribute('aria-checked', 'false'); });
         btn.setAttribute('aria-checked', 'true');
         state.answers[step.id] = option.value;
-        save();
         announce('Resposta selecionada: ' + option.label);
         later(next, 320); // avanço automático, como no funil original
       });
@@ -292,7 +228,6 @@
         if (i > -1) selected.splice(i, 1); else selected.push(option.value);
         card.setAttribute('aria-checked', i > -1 ? 'false' : 'true');
         state.answers[step.id] = selected;
-        save();
         syncCta();
       });
 
@@ -362,7 +297,6 @@
       }
       error.classList.remove('is-visible');
       state.answers.perfil = value;
-      save();
       next();
     });
 
@@ -600,17 +534,10 @@
     return player;
   }
 
-  /* Contador de escassez: dura o tempo configurado e sobrevive ao refresh. */
+  /* Contador de escassez: como a página sempre recomeça do zero, o tempo
+     também recomeça — cada visita à oferta ganha os minutos cheios. */
   function startCountdown(node) {
-    var end;
-    try {
-      end = parseInt(localStorage.getItem(TIMER_KEY), 10);
-    } catch (e) { end = NaN; }
-
-    if (!end || isNaN(end) || end < Date.now()) {
-      end = Date.now() + CONFIG.ofertaMinutos * 60 * 1000;
-      try { localStorage.setItem(TIMER_KEY, String(end)); } catch (e) { /* segue sem persistir */ }
-    }
+    var end = Date.now() + CONFIG.ofertaMinutos * 60 * 1000;
 
     function tick() {
       var left = Math.max(0, end - Date.now());
@@ -625,6 +552,5 @@
 
   /* --------------------------------------------------------------- start -- */
 
-  restore();
   render();
 })();
