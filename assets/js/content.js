@@ -7,8 +7,8 @@
    ========================================================================== */
 
 const CONFIG = {
-  // Link do checkout. Troque pelo seu link de pagamento.
-  checkoutUrl: '#',
+  // Link do checkout (Hotmart).
+  checkoutUrl: 'https://pay.hotmart.com/H107485879A?checkoutMode=10&bid=1789590144649',
 
   // Vídeo da VSL na VTurb (Converte AI). Copie o "id" e o "script" de
   // dentro do código que a VTurb te dá, no player > "obter código".
