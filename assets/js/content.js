@@ -61,7 +61,7 @@ const STEPS = [
   {
     id: 'clientes',
     type: 'choice',
-    question: 'Quantos clientes você consegue através do Instagram por mês?',
+    question: 'Quantos clientes você consegue pelo Instagram por mês?',
     image: 'assets/img/clientes-instagram.webp',
     imageAlt: 'Profissional de estética sorrindo ao ver notificações de novos seguidores e vendas no celular',
     options: [
@@ -91,7 +91,7 @@ const STEPS = [
   {
     id: 'perfil',
     type: 'input',
-    title: 'Análise rápida do seu perfil no Instagram',
+    title: 'Análise rápida do seu perfil',
     text: 'Vamos analisar o seu perfil e mostrar os pontos mais importantes que você precisa melhorar. Preencha seu @ abaixo:',
     label: 'Qual o seu @ do Instagram?',
     placeholder: 'seu.perfil',
@@ -115,7 +115,7 @@ const STEPS = [
     id: 'analise',
     type: 'analysis',
     kicker: 'Análise concluída ✅',
-    title: 'Encontramos os <b>4 erros</b> que estão travando o crescimento do seu perfil.',
+    title: 'Encontramos <b>4 erros</b> que travam o crescimento do seu perfil.',
     chart: 'assets/img/grafico-perfis.webp',
     chartAlt: 'Gráfico comparando a curva de crescimento de perfis que viralizam com a linha parada do seu perfil',
     erros: [
@@ -148,7 +148,7 @@ const STEPS = [
         ],
       },
     ],
-    viradaTitulo: 'A boa notícia é que encontramos uma oportunidade de <span class="hl">acelerar o crescimento do seu perfil em até 6x</span>.',
+    viradaTitulo: 'A boa notícia: encontramos como <span class="hl">acelerar seu crescimento em até 6x</span>.',
     sliderTitulo: 'Crescimento do perfil com estratégia personalizada',
     destaque: 'Analisando o seu perfil, identificamos que só a <b>mudança de formato do seu conteúdo já é capaz de multiplicar o seu alcance</b> sem que você precise postar mais ou aparecer mais.',
     fecho: [
@@ -162,7 +162,7 @@ const STEPS = [
   {
     id: 'frequencia',
     type: 'choice',
-    question: 'Quantas postagens você consegue fazer por semana?',
+    question: 'Quantas postagens você faz por semana?',
     hint: 'Seja realista: o plano é montado em cima da sua rotina.',
     options: [
       { value: '1',  label: '1 postagem.' },
@@ -176,7 +176,7 @@ const STEPS = [
   {
     id: 'video',
     type: 'choice',
-    question: 'Você se sente confortável gravando vídeos ou prefere modelos onde não precisa expor a sua imagem?',
+    question: 'Você prefere gravar vídeos ou não aparecer?',
     options: [
       { value: 'nao-aparecer', label: 'Prefiro não aparecer.' },
       { value: 'aparecer',     label: 'Prefiro gravar e aparecer.' },
@@ -190,7 +190,7 @@ const STEPS = [
     type: 'cards',
     multi: true,
     variant: 'illustration',
-    question: 'Qual é o seu objetivo principal ao atrair novos seguidores todos os dias?',
+    question: 'Qual o seu objetivo ao atrair novos seguidores?',
     hint: 'Pode selecionar mais de uma opção.',
     cta: 'Ver o meu plano',
     options: [
