@@ -51,7 +51,7 @@ body {
   color: var(--ink);
   font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   font-size: 17px;
-  line-height: 1.55;
+  line-height: 1.0;
   -webkit-font-smoothing: antialiased;
   min-height: 100svh;
   display: flex;
@@ -154,7 +154,7 @@ img { max-width: 100%; display: block; }
 h1, h2, h3 {
   font-family: 'Montserrat', -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;
   font-weight: 700;
-  line-height: 1.1;
+  line-height: 1.0;
   letter-spacing: -.01em;
   margin: 0 0 14px;
   text-wrap: balance;
@@ -183,11 +183,11 @@ h3 { font-size: 19px; }
 
 .badge {
   display: inline-block;
-  font-size: var(--text-body); font-weight: 600;
+  font-size: 16px; font-weight: 600;
   color: var(--gold-deep);
   background: var(--gold-soft);
   border: 1px solid var(--nude-300);
-  padding: 10px 20px;
+  padding: 8px 16px;
   border-radius: 99px;
   margin-bottom: 18px;
 }
@@ -197,9 +197,9 @@ h3 { font-size: 19px; }
   overflow: hidden;
   box-shadow: var(--shadow-md);
   margin: 0 0 22px;
-  background: var(--nude-100);
+  line-height: 0;
 }
-.hero img { width: 100%; height: auto; }
+.hero img { width: 100%; height: auto; display: block; border-radius: var(--radius-lg); }
 
 /* ------------------------------------------------------------- botões ---- */
 
@@ -323,11 +323,11 @@ h3 { font-size: 19px; }
   padding: 16px 16px 18px;
 }
 .card__title {
-  font-size: var(--text-body); font-weight: 700; line-height: 1.1;
+  font-size: var(--text-body); font-weight: 700; line-height: 1.0;
   overflow-wrap: break-word; hyphens: auto;
 }
 .card__label {
-  font-size: var(--text-body); line-height: 1.4; color: var(--ink-soft);
+  font-size: var(--text-body); line-height: 1.0; color: var(--ink-soft);
   overflow-wrap: break-word; hyphens: auto;
 }
 
@@ -352,7 +352,7 @@ h3 { font-size: 19px; }
 .field { margin: 6px 0 0; }
 .field__label {
   display: block;
-  font-size: var(--text-body); font-weight: 700; line-height: 1.1;
+  font-size: var(--text-body); font-weight: 700; line-height: 1.0;
   margin-bottom: 10px;
 }
 .field__box {
@@ -482,7 +482,9 @@ h3 { font-size: 19px; }
   box-shadow: var(--shadow-sm);
   border: 1px solid var(--nude-200);
   margin: 4px 0 28px;
+  line-height: 0;
 }
+.chart img { width: 100%; display: block; border-radius: var(--radius); }
 
 .erro {
   background: var(--danger-bg);
@@ -499,7 +501,7 @@ h3 { font-size: 19px; }
 .erro__title {
   display: flex; gap: 10px;
   font-family: 'Inter', sans-serif;
-  font-size: var(--text-body); font-weight: 700; line-height: 1.1;
+  font-size: var(--text-body); font-weight: 700; line-height: 1.0;
   margin: 0 0 10px;
   color: #7E2B21;
 }
@@ -518,7 +520,7 @@ h3 { font-size: 19px; }
 }
 .slider__title {
   font-family: 'Inter', sans-serif;
-  font-size: var(--text-body); font-weight: 700; line-height: 1.1; color: #21331F;
+  font-size: var(--text-body); font-weight: 700; line-height: 1.0; color: #21331F;
   margin: 0 0 18px;
   text-align: center;
 }
@@ -572,6 +574,14 @@ h3 { font-size: 19px; }
 }
 .video-frame iframe { width: 100%; height: 100%; border: 0; display: block; }
 
+/* O player da VTurb já define a própria largura máxima e proporção
+   (caixa vertical 9:16 via padding-top), então a moldura só entra com
+   os cantos arredondados e a sombra — sem forçar tamanho por cima. */
+.video-frame--vturb {
+  aspect-ratio: auto;
+  max-width: none;
+}
+
 .video-frame__placeholder {
   position: absolute; inset: 0;
   display: flex; flex-direction: column; align-items: center; justify-content: center;
@@ -590,7 +600,7 @@ h3 { font-size: 19px; }
   font-size: 24px;
   padding-left: 5px;
 }
-.video-frame__placeholder small { font-size: var(--text-body); opacity: .7; max-width: 22ch; line-height: 1.4; }
+.video-frame__placeholder small { font-size: var(--text-body); opacity: .7; max-width: 22ch; line-height: 1.0; }
 
 .bullets { list-style: none; padding: 0; margin: 0 0 26px; display: grid; gap: 12px; }
 .bullets li {
@@ -636,14 +646,14 @@ h3 { font-size: 19px; }
 }
 .offer-card__name {
   font-family: 'Montserrat', -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;
-  font-size: var(--text-body); font-weight: 700; line-height: 1.1;
+  font-size: var(--text-body); font-weight: 700; line-height: 1.0;
 }
 .offer-card__price {
   background: var(--nude-100);
   border-radius: 14px;
   padding: 10px 16px;
   text-align: right;
-  line-height: 1.2;
+  line-height: 1.0;
 }
 .offer-card__from { display: block; font-size: var(--text-body); color: var(--muted); text-decoration: line-through; }
 .offer-card__now  { font-size: 34px; font-weight: 700; letter-spacing: -.02em; }

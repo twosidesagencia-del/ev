@@ -510,7 +510,10 @@
     wrap.appendChild(head);
 
     var frame = el('div', 'video-frame');
-    if (CONFIG.videoUrl) {
+    if (CONFIG.vturbId && CONFIG.vturbScript) {
+      frame.classList.add('video-frame--vturb');
+      frame.appendChild(buildVturbPlayer(CONFIG.vturbId, CONFIG.vturbScript));
+    } else if (CONFIG.videoUrl) {
       var iframe = document.createElement('iframe');
       iframe.src = CONFIG.videoUrl;
       iframe.title = 'Vídeo de apresentação do ' + CONFIG.produto;
@@ -525,10 +528,6 @@
       frame.appendChild(ph);
     }
     wrap.appendChild(frame);
-
-    var bullets = el('ul', 'bullets');
-    step.bullets.forEach(function (b) { bullets.appendChild(el('li', null, '<span>' + b + '</span>')); });
-    wrap.appendChild(bullets);
 
     var card = el('div', 'offer-card');
     card.appendChild(el('div', 'offer-card__flag', '⚡ Promoção relâmpago!'));
@@ -554,8 +553,6 @@
 
     startCountdown(ring);
 
-    wrap.appendChild(el('p', 'guarantee', step.garantia));
-
     // Barra fixa no rodapé: só aparece quando o botão principal sai da tela.
     var dock = el('div', 'dock');
     dock.appendChild(checkoutButton(step.ctaPrincipal));
@@ -576,6 +573,31 @@
     cta.href = CONFIG.checkoutUrl;
     if (CONFIG.checkoutUrl && CONFIG.checkoutUrl !== '#') cta.rel = 'noopener';
     return cta;
+  }
+
+  /* Player da VTurb: monta o elemento exatamente como o código dela pede
+     e carrega o script do player só uma vez, mesmo se a pessoa voltar e
+     avançar pelo quiz várias vezes. */
+  function buildVturbPlayer(id, scriptSrc) {
+    var player = document.createElement('vturb-smartplayer');
+    player.id = id;
+    player.setAttribute('style', 'display: block; margin: 0 auto; width: 100%; max-width: 400px;');
+
+    var placeholder = el('div', 'vturb-player-placeholder');
+    placeholder.setAttribute('style', 'position: relative; width: 100%; padding: 177.77777777777777% 0 0; z-index: 0; background-color: black;');
+    player.appendChild(placeholder);
+
+    var scriptId = 'vturb-player-script-' + id;
+    if (!document.getElementById(scriptId)) {
+      var script = document.createElement('script');
+      script.id = scriptId;
+      script.type = 'text/javascript';
+      script.async = true;
+      script.src = scriptSrc;
+      document.head.appendChild(script);
+    }
+
+    return player;
   }
 
   /* Contador de escassez: dura o tempo configurado e sobrevive ao refresh. */

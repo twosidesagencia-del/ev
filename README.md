@@ -29,7 +29,8 @@ No topo dele fica o bloco `CONFIG`:
 | Item | O que é |
 |---|---|
 | `checkoutUrl` | Link do seu checkout. **Troque o `#` pelo link real antes de publicar.** |
-| `videoUrl` | Link do vídeo da VSL (YouTube/Vimeo/Panda). Deixe vazio e aparece um espaço reservado. |
+| `vturbId`, `vturbScript` | Vídeo da VSL hospedado na VTurb (já preenchido com o seu). |
+| `videoUrl` | Alternativa em YouTube/Vimeo/Panda — só é usada se `vturbId` estiver vazio. |
 | `ofertaMinutos` | Minutos do contador de escassez na última tela. |
 | `produto`, `precoDe`, `precoPor` | Nome e preços exibidos no bloco da oferta. |
 
@@ -41,9 +42,15 @@ Dentro dos textos você pode usar:
 - `<b>palavra</b>` para negrito
 - `<span class="hl">palavra</span>` para destaque em verde
 
-### Link do vídeo (YouTube)
+### Vídeo da VSL
 
-Use o formato **embed**, não o link normal da barra de endereços:
+O quiz já está com o código do seu player da VTurb (`vturbId` e `vturbScript`
+em `CONFIG`). Para trocar de vídeo, pegue o novo código em "obter código" no
+painel da VTurb e troque esses dois valores pelo `id` e pelo `src` do script
+que aparecem lá.
+
+Se um dia quiser usar YouTube/Vimeo/Panda no lugar, apague o valor de
+`vturbId` (deixe `''`) e preencha `videoUrl` com o link em formato **embed**:
 
 ```js
 videoUrl: 'https://www.youtube.com/embed/SEU_ID_AQUI?rel=0'

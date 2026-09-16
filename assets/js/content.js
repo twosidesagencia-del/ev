@@ -10,7 +10,14 @@ const CONFIG = {
   // Link do checkout. Troque pelo seu link de pagamento.
   checkoutUrl: '#',
 
-  // Link do vídeo (VSL). Aceita YouTube, Vimeo ou Panda.
+  // Vídeo da VSL na VTurb (Converte AI). Copie o "id" e o "script" de
+  // dentro do código que a VTurb te dá, no player > "obter código".
+  // Deixe os dois em '' para usar o link do YouTube/Vimeo abaixo, ou o
+  // espaço reservado se nenhum dos dois estiver preenchido.
+  vturbId: 'vid-6a9c7ed7f796faf11e62ebe5',
+  vturbScript: 'https://scripts.converteai.net/170f8c81-aab8-4672-803c-6690c002a425/players/6a9c7ed7f796faf11e62ebe5/v4/player.js',
+
+  // Link do vídeo (YouTube/Vimeo/Panda) — só é usado se vturbId estiver vazio.
   // Ex.: 'https://www.youtube.com/embed/SEU_ID?rel=0'
   videoUrl: '',
 
@@ -163,7 +170,6 @@ const STEPS = [
     id: 'frequencia',
     type: 'choice',
     question: 'Quantas postagens você faz por semana?',
-    hint: 'Seja realista: o plano é montado em cima da sua rotina.',
     options: [
       { value: '1',  label: '1 postagem.' },
       { value: '2',  label: '2 postagens.' },
@@ -227,13 +233,7 @@ const STEPS = [
     type: 'offer',
     title: 'Copie, cola e viralize!',
     text: 'Se prepare para receber os novos seguidores e clientes, se fizer isso: 👇',
-    bullets: [
-      'Templates prontos de posts e Reels que já viralizaram no nicho de estética.',
-      'Roteiros e legendas para copiar, colar e adaptar para os seus procedimentos.',
-      'O passo a passo dos formatos que o algoritmo está entregando agora.',
-    ],
     ctaPrincipal: 'Eu quero o Estética Viral',
     urgencia: 'Resgate agora o seu desconto!',
-    garantia: '🛡️ Garantia incondicional de 7 dias. Não gostou, devolvemos 100% do valor.',
   },
 ];
