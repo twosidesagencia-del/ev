@@ -35,8 +35,10 @@
   --ease: cubic-bezier(.22,.8,.3,1);
 
   /* Tamanho único para todo texto de apoio (legendas, opções, avisos, rodapé
-     de oferta) — mantém o quiz inteiro no mesmo padrão de leitura. */
-  --text-body: 24px;
+     de oferta) — mantém o quiz inteiro no mesmo padrão de leitura.
+     Menor no celular, maior a partir de tablet/desktop (ver media query
+     no fim do arquivo). */
+  --text-body: 18px;
 }
 
 *, *::before, *::after { box-sizing: border-box; }
@@ -309,11 +311,11 @@ h3 { font-size: 19px; }
 }
 .card__title {
   font-size: var(--text-body); font-weight: 700; line-height: 1.0;
-  overflow-wrap: break-word; hyphens: auto;
+  overflow-wrap: break-word; -webkit-hyphens: none; hyphens: none;
 }
 .card__label {
   font-size: var(--text-body); line-height: 1.0; color: var(--ink-soft);
-  overflow-wrap: break-word; hyphens: auto;
+  overflow-wrap: break-word; -webkit-hyphens: none; hyphens: none;
 }
 
 .card__check {
@@ -625,8 +627,8 @@ h3 { font-size: 19px; }
   padding: 12px 14px;
 }
 .offer-card__body {
-  display: flex; align-items: center; justify-content: space-between; gap: 14px;
-  padding: 18px 20px;
+  display: flex; align-items: center; justify-content: space-between; gap: 10px;
+  padding: 14px 14px;
   flex-wrap: wrap;
 }
 .offer-card__name {
@@ -636,13 +638,13 @@ h3 { font-size: 19px; }
 .offer-card__price {
   background: var(--nude-100);
   border-radius: 14px;
-  padding: 10px 16px;
+  padding: 8px 12px;
   text-align: right;
   line-height: 1.0;
 }
 .offer-card__from { display: block; font-size: var(--text-body); color: var(--muted); text-decoration: line-through; }
-.offer-card__now  { font-size: 34px; font-weight: 700; letter-spacing: -.02em; }
-.offer-card__now small { font-size: 18px; font-weight: 700; }
+.offer-card__now  { font-size: 26px; font-weight: 700; letter-spacing: -.02em; }
+.offer-card__now small { font-size: 14px; font-weight: 700; }
 .offer-card__cash { display: block; font-size: var(--text-body); color: var(--muted); }
 
 .timer { text-align: center; margin: 26px 0 8px; }
@@ -701,10 +703,15 @@ h3 { font-size: 19px; }
 /* ------------------------------------------------------------ responsivo -- */
 
 @media (min-width: 620px) {
+  :root { --text-body: 24px; }
   body { font-size: 17.5px; }
   .quiz { padding: 38px 0 56px; }
   .cards { gap: 16px; }
   .video-frame { max-width: 380px; }
+  .offer-card__body { padding: 18px 20px; gap: 14px; }
+  .offer-card__price { padding: 10px 16px; }
+  .offer-card__now { font-size: 34px; }
+  .offer-card__now small { font-size: 18px; }
 }
 
 @media (prefers-reduced-motion: reduce) {
