@@ -119,3 +119,20 @@ assets/js/content.js    ← textos, imagens, preços e links (edite aqui)
 assets/js/quiz.js       motor do quiz (navegação, progresso, contador)
 assets/img/             imagens otimizadas em WebP
 ```
+
+## Página de upsell (`upsell/index.html`)
+
+Página de pós-compra, no modelo "não feche esta página". Abre em `seudominio/upsell/`.
+Já tem os mesmos pixels (Metrito e Utmify) do quiz.
+
+Tudo o que você edita fica no bloco `CONFIG`, no fim do arquivo:
+
+| Item | O que é |
+|---|---|
+| `checkoutUrl` | Link do checkout do upsell. **Troque o `#` antes de publicar.** |
+| `declineUrl` | Para onde vai quem clica em "Não, obrigada". |
+| `vturbId`, `vturbScript` | Vídeo horizontal da VTurb (id e src do script do player). |
+| `videoUrl` | Alternativa em YouTube/Vimeo/Panda (formato embed). |
+| `ctaDelaySegundos` | Segundos até o botão aparecer. Use o momento do vídeo em que a oferta é apresentada. |
+
+Na Hotmart, aponte a "página de obrigado" do produto principal para essa URL.
