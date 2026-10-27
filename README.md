@@ -142,3 +142,9 @@ Na Hotmart, aponte a "página de obrigado" do produto principal para essa URL.
 Para onde vai quem clica em "Não, obrigada" no upsell (`declineUrl` aponta
 para `../obrigado/`). Avisa que o acesso foi enviado por e-mail pela Hotmart.
 Também pode ser usada como página de obrigado de quem compra o upsell.
+
+## Página de obrigado do planejamento (`obrigado-planejamento/index.html`)
+
+Para quem compra o upsell. Avisa que a equipe da 2 Sides chama no WhatsApp
+em até 24 horas para enviar o formulário. Na Hotmart, use
+`seudominio/obrigado-planejamento/` como página de obrigado do produto do planejamento.
