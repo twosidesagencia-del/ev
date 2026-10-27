@@ -105,8 +105,9 @@
     background: #000;
     box-shadow: 0 2px 6px rgba(38,32,28,.08), 0 18px 40px rgba(38,32,28,.14);
   }
-  .video iframe,
-  .video vturb-smartplayer { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; display: block; }
+  .video iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; display: block; }
+  /* Com a VTurb, o próprio player reserva a proporção 16:9 */
+  .video--vturb { aspect-ratio: auto; }
   .video__placeholder {
     position: absolute; inset: 0;
     display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 10px;
@@ -220,7 +221,7 @@
   </p>
 
   <h1>
-    Veja como ter mais 30 conteúdos que vão potencializar o <span class="hl">aumento de clientes</span>.
+    Seus templates vão trazer gente pro seu perfil. Veja como fazer essas visitas virarem <span class="hl">clientes agendadas</span>.
   </h1>
 
   <div class="video" id="video">
@@ -239,7 +240,7 @@
   </p>
 
   <div class="cta" id="cta" hidden>
-    <a class="btn" id="ctaBtn" href="#">Sim, quero o planejamento</a><br>
+    <a class="btn" id="ctaBtn" href="#">Quero o planejamento</a><br>
     <a class="decline" id="declineBtn" href="#">Não, obrigada. Vou ficar só com os templates.</a>
   </div>
 
@@ -251,14 +252,14 @@
      ====================================================================== */
   var CONFIG = {
     // Link do checkout do upsell (Hotmart).
-    checkoutUrl: '#',
+    checkoutUrl: 'https://pay.hotmart.com/I108191158C?off=4byicinh',
 
     // Para onde vai quem clica em "Não, obrigada" (ex.: página de obrigado).
     declineUrl: '#',
 
     // Vídeo na VTurb: cole o "id" e o "src" do script do player horizontal.
-    vturbId: '',
-    vturbScript: '',
+    vturbId: 'vid-6ae11af6f2699dc279cbf5aa',
+    vturbScript: 'https://scripts.converteai.net/170f8c81-aab8-4672-803c-6690c002a425/players/6ae11af6f2699dc279cbf5aa/v4/player.js',
 
     // Alternativa: link embed do YouTube/Vimeo/Panda (usado se vturbId estiver vazio).
     videoUrl: '',
@@ -275,9 +276,14 @@
     var box = document.getElementById('video');
     if (CONFIG.vturbId && CONFIG.vturbScript) {
       box.innerHTML = '';
+      box.classList.add('video--vturb');
       var player = document.createElement('vturb-smartplayer');
       player.id = CONFIG.vturbId;
       player.setAttribute('style', 'display:block;margin:0 auto;width:100%;');
+      var ph = document.createElement('div');
+      ph.className = 'vturb-player-placeholder';
+      ph.setAttribute('style', 'position:relative;width:100%;padding:56.25% 0 0;z-index:0;background-color:black;');
+      player.appendChild(ph);
       box.appendChild(player);
       var s = document.createElement('script');
       s.async = true;
