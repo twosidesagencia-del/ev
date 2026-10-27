@@ -136,3 +136,9 @@ Tudo o que você edita fica no bloco `CONFIG`, no fim do arquivo:
 | `ctaDelaySegundos` | Segundos até o botão aparecer. Use o momento do vídeo em que a oferta é apresentada. |
 
 Na Hotmart, aponte a "página de obrigado" do produto principal para essa URL.
+
+## Página de obrigado (`obrigado/index.html`)
+
+Para onde vai quem clica em "Não, obrigada" no upsell (`declineUrl` aponta
+para `../obrigado/`). Avisa que o acesso foi enviado por e-mail pela Hotmart.
+Também pode ser usada como página de obrigado de quem compra o upsell.
