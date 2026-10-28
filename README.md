@@ -119,3 +119,33 @@ assets/js/content.js    ← textos, imagens, preços e links (edite aqui)
 assets/js/quiz.js       motor do quiz (navegação, progresso, contador)
 assets/img/             imagens otimizadas em WebP
 ```
+
+## Página de upsell (`upsell/index.html`)
+
+Página de pós-compra, no modelo "não feche esta página". Abre em `seudominio/upsell/`.
+Já tem os mesmos pixels (Metrito e Utmify) do quiz.
+
+Os botões de compra e de recusa vêm do widget de funil da Hotmart (one-click),
+que só aparece quando a pessoa chega pelo checkout da Hotmart. Os destinos de
+"sim" e "não" são configurados no funil, dentro da Hotmart.
+
+Tudo o que você edita fica no bloco `CONFIG`, no fim do arquivo:
+
+| Item | O que é |
+|---|---|
+| `vturbId`, `vturbScript` | Vídeo horizontal da VTurb (id e src do script do player). |
+| `videoUrl` | Alternativa em YouTube/Vimeo/Panda (formato embed). |
+| `ctaDelaySegundos` | Segundos até os botões de compra aparecerem. Use o momento do vídeo em que a oferta é apresentada. |
+
+Na Hotmart, aponte a "página de obrigado" do produto principal para essa URL.
+
+## Página de obrigado (`obrigado/index.html`)
+
+Para onde vai quem recusa o upsell (configure no funil da Hotmart). Avisa que o acesso foi enviado por e-mail pela Hotmart.
+Também pode ser usada como página de obrigado de quem compra o upsell.
+
+## Página de obrigado do planejamento (`obrigado-planejamento/index.html`)
+
+Para quem compra o upsell. Avisa que a equipe da 2 Sides chama no WhatsApp
+em até 24 horas para enviar o formulário. Na Hotmart, use
+`seudominio/obrigado-planejamento/` como página de obrigado do produto do planejamento.
