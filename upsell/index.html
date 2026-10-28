@@ -143,40 +143,12 @@
   }
   .warning b { font-weight: 800; }
 
-  /* Botão de compra (aparece depois do tempo definido em CTA_DELAY) -------- */
+  /* Widget de compra da Hotmart (aparece depois de ctaDelaySegundos) ----- */
   .cta { margin-top: 32px; }
   .cta[hidden] { display: none; }
-  .btn {
-    display: inline-flex; align-items: center; justify-content: center; gap: 10px;
-    width: 100%; max-width: 460px;
-    padding: 20px 24px;
-    border-radius: 14px;
-    background: var(--green);
-    color: #fff;
-    font-family: 'Montserrat', sans-serif;
-    font-weight: 800;
-    font-size: 18px;
-    line-height: 1.25;
-    text-decoration: none;
-    text-transform: uppercase;
-    box-shadow: 0 6px 18px rgba(23,162,74,.32);
-    animation: pulse 2s infinite;
-  }
-  .btn:hover { background: var(--green-deep); }
-  @keyframes pulse {
-    0%, 100% { transform: scale(1); }
-    50%      { transform: scale(1.03); }
-  }
-  .decline {
-    display: inline-block;
-    margin-top: 18px;
-    font-size: 14px;
-    color: var(--brown);
-    opacity: .7;
-  }
 
   @media (prefers-reduced-motion: reduce) {
-    .alert__dot, .btn { animation: none; }
+    .alert__dot { animation: none; }
   }
 
   @media (min-width: 768px) {
@@ -240,8 +212,16 @@
   </p>
 
   <div class="cta" id="cta" hidden>
-    <a class="btn" id="ctaBtn" href="#">Quero o planejamento</a><br>
-    <a class="decline" id="declineBtn" href="#">Não, obrigada. Vou ficar só com os templates.</a>
+    <!-- HOTMART - Sales Funnel Widget -->
+    <!--- sales funnel container --->
+    <div id="hotmart-sales-funnel"></div>
+
+    <!--- script load and setup --->
+    <script src="https://checkout.hotmart.com/lib/hotmart-checkout-elements.js"></script>
+    <script>
+    checkoutElements.init('salesFunnel').mount('#hotmart-sales-funnel')
+    </script>
+    <!-- HOTMART - Sales Funnel Widget -->
   </div>
 
 </main>
@@ -251,12 +231,6 @@
      CONFIGURAÇÃO — edite só este bloco
      ====================================================================== */
   var CONFIG = {
-    // Link do checkout do upsell (Hotmart).
-    checkoutUrl: 'https://pay.hotmart.com/I108191158C?off=4byicinh',
-
-    // Para onde vai quem clica em "Não, obrigada" (ex.: página de obrigado).
-    declineUrl: '../obrigado/',
-
     // Vídeo na VTurb: cole o "id" e o "src" do script do player horizontal.
     vturbId: 'vid-6ae11af6f2699dc279cbf5aa',
     vturbScript: 'https://scripts.converteai.net/170f8c81-aab8-4672-803c-6690c002a425/players/6ae11af6f2699dc279cbf5aa/v4/player.js',
@@ -264,15 +238,12 @@
     // Alternativa: link embed do YouTube/Vimeo/Panda (usado se vturbId estiver vazio).
     videoUrl: '',
 
-    // Segundos até o botão de compra aparecer (0 = aparece na hora).
+    // Segundos até os botões de compra da Hotmart aparecerem (0 = na hora).
     // Coloque o momento do vídeo em que você apresenta a oferta.
     ctaDelaySegundos: 0,
   };
 
   (function () {
-    document.getElementById('ctaBtn').href = CONFIG.checkoutUrl;
-    document.getElementById('declineBtn').href = CONFIG.declineUrl;
-
     var box = document.getElementById('video');
     if (CONFIG.vturbId && CONFIG.vturbScript) {
       box.innerHTML = '';

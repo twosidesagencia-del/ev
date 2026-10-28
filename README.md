@@ -125,22 +125,23 @@ assets/img/             imagens otimizadas em WebP
 Página de pós-compra, no modelo "não feche esta página". Abre em `seudominio/upsell/`.
 Já tem os mesmos pixels (Metrito e Utmify) do quiz.
 
+Os botões de compra e de recusa vêm do widget de funil da Hotmart (one-click),
+que só aparece quando a pessoa chega pelo checkout da Hotmart. Os destinos de
+"sim" e "não" são configurados no funil, dentro da Hotmart.
+
 Tudo o que você edita fica no bloco `CONFIG`, no fim do arquivo:
 
 | Item | O que é |
 |---|---|
-| `checkoutUrl` | Link do checkout do upsell. **Troque o `#` antes de publicar.** |
-| `declineUrl` | Para onde vai quem clica em "Não, obrigada". |
 | `vturbId`, `vturbScript` | Vídeo horizontal da VTurb (id e src do script do player). |
 | `videoUrl` | Alternativa em YouTube/Vimeo/Panda (formato embed). |
-| `ctaDelaySegundos` | Segundos até o botão aparecer. Use o momento do vídeo em que a oferta é apresentada. |
+| `ctaDelaySegundos` | Segundos até os botões de compra aparecerem. Use o momento do vídeo em que a oferta é apresentada. |
 
 Na Hotmart, aponte a "página de obrigado" do produto principal para essa URL.
 
 ## Página de obrigado (`obrigado/index.html`)
 
-Para onde vai quem clica em "Não, obrigada" no upsell (`declineUrl` aponta
-para `../obrigado/`). Avisa que o acesso foi enviado por e-mail pela Hotmart.
+Para onde vai quem recusa o upsell (configure no funil da Hotmart). Avisa que o acesso foi enviado por e-mail pela Hotmart.
 Também pode ser usada como página de obrigado de quem compra o upsell.
 
 ## Página de obrigado do planejamento (`obrigado-planejamento/index.html`)
