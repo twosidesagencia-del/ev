@@ -14,15 +14,14 @@
 
 const CONFIG = {
   // Link do checkout (Hotmart).
-  // ATENÇÃO: troque pelo link da OFERTA EM EURO (17 €) da Hotmart antes de publicar.
-  checkoutUrl: 'https://pay.hotmart.com/H107485879A?checkoutMode=10&bid=1789590144649',
+  checkoutUrl: 'https://pay.hotmart.com/J108204971J?checkoutMode=10',
 
   // Vídeo da VSL na VTurb (Converte AI). Copie o "id" e o "script" de
   // dentro do código que a VTurb te dá, no player > "obter código".
   // Deixe os dois em '' para usar o link do YouTube/Vimeo abaixo, ou o
   // espaço reservado se nenhum dos dois estiver preenchido.
-  vturbId: 'vid-6a9c7ed7f796faf11e62ebe5',
-  vturbScript: 'https://scripts.converteai.net/170f8c81-aab8-4672-803c-6690c002a425/players/6a9c7ed7f796faf11e62ebe5/v4/player.js',
+  vturbId: 'vid-6ae39bdc59383dc004eddea4',
+  vturbScript: 'https://scripts.converteai.net/170f8c81-aab8-4672-803c-6690c002a425/players/6ae39bdc59383dc004eddea4/v4/player.js',
 
   // Link do vídeo (YouTube/Vimeo/Panda) — só é usado se vturbId estiver vazio.
   // Ex.: 'https://www.youtube.com/embed/SEU_ID?rel=0'
