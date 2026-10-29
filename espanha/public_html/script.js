@@ -32,7 +32,7 @@ const CONFIG = {
 
   // Preços exibidos na oferta.
   produto: 'Estética Viral',
-  precoDe: '67 €',
+  precoDe: '', // preço riscado: deixe '' para não mostrar
   precoPor: '17',
   moeda: '€',
 };
@@ -241,7 +241,7 @@ const STEPS = [
     title: '¡Copia, pega y hazte viral!',
     text: 'Prepárate para recibir nuevos seguidores y clientas si haces esto: 👇',
     ctaPrincipal: 'Quiero Estética Viral',
-    urgencia: '¡Consigue tu descuento ahora!',
+    urgencia: '¡Asegura tu acceso ahora!',
   },
 ];
 
@@ -715,7 +715,7 @@ const STEPS = [
     var body = el('div', 'offer-card__body');
     body.appendChild(el('span', 'offer-card__name', CONFIG.produto));
     var price = el('div', 'offer-card__price');
-    price.appendChild(el('span', 'offer-card__from', 'Antes ' + CONFIG.precoDe));
+    if (CONFIG.precoDe) price.appendChild(el('span', 'offer-card__from', 'Antes ' + CONFIG.precoDe));
     price.appendChild(el('span', 'offer-card__now', CONFIG.precoPor + ' <small>' + CONFIG.moeda + '</small>'));
     price.appendChild(el('span', 'offer-card__cash', 'pago único'));
     body.appendChild(price);
